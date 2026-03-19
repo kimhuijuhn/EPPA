@@ -45,7 +45,7 @@ conan install ../Config --output-folder=. --build=missing
 Point `PTSL_SDK_DIR` at the root of your extracted PTSL SDK:
 
 ```bash
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
 ```
 
 ### 3. Build
