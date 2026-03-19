@@ -7,14 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # ---------------------------------------------------------------------------
 # Conan-generated dependency paths (rtmidi, nlohmann_json)
 # Run from your build directory:
-#   conan install ../Config --build=missing -g cmake
-# then:
-#   cmake .. -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
+#   conan install ../Config --build=missing
+#   cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
 # ---------------------------------------------------------------------------
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake OPTIONAL)
-if(COMMAND conan_basic_setup)
-    conan_basic_setup(TARGETS)
-endif()
+find_package(rtmidi REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 # ---------------------------------------------------------------------------
 # PTSL SDK — point this at your extracted SDK root.
@@ -54,5 +51,5 @@ target_include_directories(eppa PRIVATE src)
 
 target_link_libraries(eppa PRIVATE
     PTSLC_CPP
-    CONAN_PKG::rtmidi
-    CONAN_PKG::nlohmann_json)
+    rtmidi::rtmidi
+    nlohmann_json::nlohmann_json)
