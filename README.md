@@ -32,7 +32,34 @@ When the pedal leaves the solo zone in either direction, the track is automatica
 
 ## Build Instructions
 
-### 1. Install dependencies via Conan
+### 0. Place and build the PTSL SDK
+
+Place the extracted SDK folder **inside** the `EPPA` directory so the layout looks like this:
+
+```
+EPPA/
+├── PTSL_SDK_CPP.2025.10.0.1267955/
+├── src/
+├── Config/
+└── CMakeLists.txt
+```
+
+Then build and install the SDK from within that folder:
+
+```bash
+cd EPPA/PTSL_SDK_CPP.2025.10.0.1267955
+mkdir build && cd build
+conan install .. --build=missing -s build_type=Release
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DPTSLC_CPP_INSTALL_RELEASE_PREFIX=$(pwd)/install
+cmake --build . --config Release
+cmake --install . --config Release
+```
+
+> **Note:** This step compiles gRPC and protobuf from source and can take 20–30 minutes on first run.
+
+### 1. Install EPPA dependencies via Conan
 
 ```bash
 cd EPPA
@@ -42,10 +69,10 @@ conan install ../Config --output-folder=. --build=missing
 
 ### 2. Configure with CMake
 
-Point `PTSL_SDK_DIR` at the root of your extracted PTSL SDK:
-
 ```bash
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DPTSL_SDK_DIR=../PTSL_SDK_CPP.2025.10.0.1267955
 ```
 
 ### 3. Build

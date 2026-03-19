@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Conan-generated dependency paths (rtmidi, nlohmann_json)
 # Run from your build directory:
 #   conan install ../Config --build=missing
-#   cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
+#   cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DPTSL_SDK_DIR=../PTSL_SDK_CPP.2025.10.0.1267955
 # ---------------------------------------------------------------------------
 find_package(RtMidi REQUIRED)
 find_package(nlohmann_json REQUIRED)
@@ -28,7 +28,7 @@ endif()
 # The SDK ships as a pre-built shared library; locate it.
 find_library(PTSL_LIB
     NAMES PTSLC_CPP libPTSLC_CPP
-    HINTS "${PTSL_SDK_DIR}/lib" "${PTSL_SDK_DIR}/build/lib"
+    HINTS "${PTSL_SDK_DIR}/lib" "${PTSL_SDK_DIR}/build/lib" "${PTSL_SDK_DIR}/build/install"
     REQUIRED)
 
 add_library(PTSLC_CPP SHARED IMPORTED)
