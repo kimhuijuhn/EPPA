@@ -25,7 +25,7 @@ When the pedal leaves the solo zone in either direction, the track is automatica
 - **Pro Tools** 2024.10 or later (running and accessible on `localhost:31416`)
 - **PTSL C++ SDK** 2025.10.0 or later
 - **CMake** 3.25+
-- **Conan** 1.62.0+
+- **Conan** 2.0+
 - **C++17** compiler (Xcode on macOS, MSVC on Windows)
 
 ---
@@ -37,7 +37,7 @@ When the pedal leaves the solo zone in either direction, the track is automatica
 ```bash
 cd EPPA
 mkdir build && cd build
-conan install ../Config --build=missing -g cmake
+conan install ../Config --output-folder=. --build=missing
 ```
 
 ### 2. Configure with CMake
@@ -45,7 +45,7 @@ conan install ../Config --build=missing -g cmake
 Point `PTSL_SDK_DIR` at the root of your extracted PTSL SDK:
 
 ```bash
-cmake .. -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
 ```
 
 ### 3. Build
