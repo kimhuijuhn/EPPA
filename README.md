@@ -164,7 +164,7 @@ EPPA/
 │   └── controller/
 │       └── ProToolsController.h/.cpp   PTSL SDK wrapper
 ├── Config/
-│   └── conanfile.txt                   RtMidi + nlohmann_json deps
+│   └── conanfile.txt                   RtMidi + nlohmann_json deps; CMakeDeps + CMakeToolchain generators
 ├── CMakeLists.txt
 ├── references.md                       Full method-level API reference
 └── CLAUDE.md                           Claude Code workflow rules
