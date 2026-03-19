@@ -1,0 +1,6 @@
+[requires]
+rtmidi/5.0.0
+nlohmann_json/3.11.2
+
+[generators]
+cmake
