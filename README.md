@@ -34,7 +34,7 @@ When the pedal leaves the solo zone in either direction, the track is automatica
 
 ### 0. Place and build the PTSL SDK
 
-Place the extracted SDK folder **inside** the `EPPA` directory so the layout looks like this:
+Download the SDK from the [Avid Developer Portal](https://developer.avid.com/scripting/#:~:text=and%20associated%20documentation.-,Download%20Toolkit,-Pro%20Tools%20Scripting) (click **Download Toolkit**), then place the extracted SDK folder **inside** the `EPPA` directory so the layout looks like this:
 
 ```
 EPPA/
