@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #   conan install ../Config --build=missing
 #   cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DPTSL_SDK_DIR=/path/to/PTSL_SDK_CPP.2025.10.0.1267955
 # ---------------------------------------------------------------------------
-find_package(rtmidi REQUIRED)
+find_package(RtMidi REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 # ---------------------------------------------------------------------------
@@ -51,5 +51,5 @@ target_include_directories(eppa PRIVATE src)
 
 target_link_libraries(eppa PRIVATE
     PTSLC_CPP
-    rtmidi::rtmidi
+    RtMidi::rtmidi
     nlohmann_json::nlohmann_json)
