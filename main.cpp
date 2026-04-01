@@ -7,8 +7,8 @@ int main() {
     };
 
     auto client = std::make_unique<PTSLC_CPP::CppPTSLClient>(config);
-
-    std::cout << "This Works!" << std::endl;
+    client->LaunchProTools();
+    std::cout << "I can launch Pro Tools now!" << std::endl;
 
     return 0;
 }
