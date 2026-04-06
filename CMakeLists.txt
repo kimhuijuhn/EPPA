@@ -8,18 +8,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(PTSL_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/PTSL_SDK_CPP.2025.10.0.1267955")
 set(PTSL_FRAMEWORK_DIR "${PTSL_SDK_DIR}/install/arm64/Debug/PTSLC_CPP")
 
-add_executable(EPPAClient
-    main.cpp
-    host_ready_check.cpp
-    register_connection.cpp
-    get_session_name.cpp
-    get_track_list.cpp
-    toggle_play_state.cpp
-)
-
 set(NLOHMANN_JSON_INCLUDE_DIR
     "${PTSL_SDK_DIR}/Config/.conan/data/nlohmann_json/3.11.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"
 )
+
+add_executable(EPPAClient
+    main.cpp
+    App.cpp
+    MidiInputHandler.cpp
+    PedalInterpreter.cpp
+    PlaybackController.cpp
+    Reader.cpp
+    RtMidi.cpp
+)
+
+target_compile_definitions(EPPAClient PRIVATE __MACOSX_CORE__)
 
 target_include_directories(EPPAClient PRIVATE
     "${PTSL_FRAMEWORK_DIR}/PTSLC_CPP.framework/Headers"
@@ -29,6 +32,9 @@ target_include_directories(EPPAClient PRIVATE
 target_link_libraries(EPPAClient PRIVATE
     "-F${PTSL_FRAMEWORK_DIR}"
     "-framework PTSLC_CPP"
+    "-framework CoreMIDI"
+    "-framework CoreAudio"
+    "-framework CoreFoundation"
 )
 
 # Set rpath so the binary finds the framework at runtime
