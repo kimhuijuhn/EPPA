@@ -14,17 +14,21 @@ set(NLOHMANN_JSON_INCLUDE_DIR
 
 add_executable(EPPAClient
     main.cpp
-    App.cpp
-    MidiInputHandler.cpp
-    PedalInterpreter.cpp
-    PlaybackController.cpp
-    Reader.cpp
+    controller/App.cpp
+    controller/MidiInputHandler.cpp
+    model/PedalInterpreter.cpp
+    controller/PlaybackController.cpp
+    voiceover/Reader.cpp
     RtMidi.cpp
 )
 
 target_compile_definitions(EPPAClient PRIVATE __MACOSX_CORE__)
 
 target_include_directories(EPPAClient PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/model"
+    "${CMAKE_CURRENT_SOURCE_DIR}/controller"
+    "${CMAKE_CURRENT_SOURCE_DIR}/voiceover"
     "${PTSL_FRAMEWORK_DIR}/PTSLC_CPP.framework/Headers"
     "${NLOHMANN_JSON_INCLUDE_DIR}"
 )
